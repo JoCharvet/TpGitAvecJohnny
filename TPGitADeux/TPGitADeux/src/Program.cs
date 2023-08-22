@@ -8,7 +8,7 @@ namespace TPGitADeux.src
         {
             Person myPerson = new Person(AskName(), AskFirstName());
             Console.WriteLine(myPerson.ToString());
-
+            PeopleContainer pc = new PeopleContainer(new List<Person>() { myPerson});
         }
         /// <summary>
         /// Demande le nom de la personne.
