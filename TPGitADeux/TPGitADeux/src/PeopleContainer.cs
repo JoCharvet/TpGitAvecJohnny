@@ -8,7 +8,7 @@ namespace TPGitADeux.src
 {
     public class PeopleContainer : IPersonContainer<Person>
     {
-        public List<Person> people { get; private set; }
+        public List<Person> people { get;private set; }
         public PeopleContainer(List<Person> _people = null) 
         {
             if (_people == null)

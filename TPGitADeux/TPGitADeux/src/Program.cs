@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace TPGitADeux.src
 {
@@ -8,7 +9,9 @@ namespace TPGitADeux.src
         {
             Person myPerson = new Person(AskName(), AskFirstName());
             Console.WriteLine(myPerson.ToString());
-            PeopleContainer pc = new PeopleContainer(new List<Person>() { myPerson});
+            PeopleContainer pc = new PeopleContainer(new List<Person>() { myPerson });
+            Console.WriteLine(ToJson(pc));
+
         }
         /// <summary>
         /// Demande le nom de la personne.
@@ -30,6 +33,15 @@ namespace TPGitADeux.src
             Console.WriteLine("Veuillez saisir votre prénom(lettres uniquement) : ");
             string firstName = Console.ReadLine();
             return Regex.IsMatch(firstName, @"^[\p{L}]{2,}$") ? firstName : AskFirstName();
+        }
+        /// <summary>
+        /// renvoie le json de la liste de personnes.
+        /// </summary>
+        /// <param name="pc">PeopleContainer</param>
+        /// <returns>string</returns> la liste de personne au format json.
+        public static string ToJson(PeopleContainer pc)
+        {
+            return JsonSerializer.Serialize(pc.people);
         }
     }
 }
